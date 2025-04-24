@@ -1,0 +1,139 @@
+body{
+    margin: 0;
+    background-color: gray;
+    font-family: sans-serif;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+nav{
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    height: 10px;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+.nav-links{
+    color: white;
+    text-decoration: none;
+    margin-right: 1em;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: orangered;
+}
+.nav-links:hover{
+    background-color: #b93a04;
+}
+.left-nav{
+    display: flex;
+    align-items: center;
+}
+.right-nav{
+    display: flex;
+    align-items: center;
+}
+.title{
+    color: orangered;
+    margin-left: auto;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    align-items: center;
+}
+.title:hover{
+    color: #b93a04;
+}
+.search-container{
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 8px; 
+    padding: 5px 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0.2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;   
+}
+#search-dialog{
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    display: none;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 1000;
+    box-shadow: 0,0,15px rgba(0, 0, 0, 0.5);
+}
+.dialog-content{
+    position: relative;
+}
+.dialog-content h2{
+    margin-left: 4px;
+}
+.close-btn{
+    position: relative;
+    font: 24px;
+    right: 20px;
+    cursor: pointer;
+}
+#search-result{
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+.search-result li{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 4px 12px;
+}
+.search-result li:hover{
+    background-color: #ddd;
+}
+/* Todo Icon Image */
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    margin-bottom: 5px;
+    /* width: 100%; */
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th,td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+th{
+    background-color: #f4f4f4;
+}
+
+/* Responsive to tablet adding media query */
+@media (max-width:768px){
+    header{
+        flex-direction: column;
+        text-align: center;
+    }
+    nav{
+        margin-top: 10px;
+    }
+    table{
+        font-size: 14px;
+    }
+}

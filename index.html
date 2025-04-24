@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Crypto</title>
+</head>
+<body>
+    <nav>
+<div class="left-nav">
+    <a href="index.html" class="title"> Crypto Tracker</a>
+    </div>
+    <div class="right-nav">
+        <a href="index.html" class="nav-links"> Home</a>
+        <a href="#" class="nav-links">Liked Coins</a>
+        <div class="search-container">
+            <input type="text" id="search-box" placeholder="search coin..." autocomplete="off">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <div class="dialog-box" id="search-dialog">
+
+            <div class="dialog-content">
+                <span class="close-btn" id="close-dialog">
+                    &times;
+                </span>
+                <h2>Search Results</h2>
+                <ul id="search-result">
+                    <!-- search result will be populated here -->
+                </ul>
+            </div>
+            </div>
+        </div>
+ 
+ 
+     </nav>   
+
+
+     <main>
+        <table id="crypto-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>
+                        price
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </th>
+                    <th>
+                        Volume
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </th>
+                    <th>
+                        Market
+                        <i class="fa-solid fa-arrow-up"></i>
+                        <i class="fa-solid fa-arrow-down"></i>
+
+                    </th>
+                    <th>Favorite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- Todo will be inserted here -->
+                    </tbody>
+     </main>
+
+     <script src="https://kit.fontawesome.com/fa52ad9e75.js" crossorigin="anonymous"></script>
+     <script src="./index.js"></script>
+</body>
+</html>
