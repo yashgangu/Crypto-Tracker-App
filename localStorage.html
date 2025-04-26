@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing of LocalStorage</title>
+</head>
+<body>
+    <h2>Enter Your Name</h2>
+    <input type="text" id="nameInput">
+    <button onclick="saveName()">Save</button>
+    <button onclick="loadName()">Load</button>
+    <p id="output"></p>
+
+
+    <script>
+        function saveName(){
+            const name=document.getElementById('nameInput').value;
+            localStorage.setItem('userName',name);
+            alert("Name save to Local Storage");
+        }
+
+        function loadName(){
+            const storeName=localStorage.getItem('userName')
+            document.getElementById('output').innerText=storeName
+            ?"Hello" + storeName:"No name found in local Storage"
+        }
+
+        //Second reference for an object
+
+        const user={
+            "name":"Yash",
+            "age":20,
+            "role":"Developer"
+        };
+        localStorage.setItem('userData',JSON.stringify(user))
+
+        //Retrieve the data back from Local Storage to object
+
+        const retrieveUser=JSON.parse(localStorage.getItem('userData'));
+        document.write(retrieveUser.role);
+    </script>
+</body>
+</html>

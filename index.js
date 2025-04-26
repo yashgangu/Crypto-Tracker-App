@@ -78,4 +78,41 @@ const initializePage = async () => {
 
     renderCoins(coins, currentPage, 25);
 };
+
+// Save favorites to local Storage
+const saveFavorites=(favorites)=> localStorage.setItem('favorites',JSON.stringify(favorites));
+
+//Toggle the favorite status
+const toggleFavorites=(coinId)=>{
+    const favorites=getFavorites();
+    if(favorites.includes(coinId)){
+        favorites=favorites.filter(id=> id!==coinId);    
+    }else{
+        favorites.push(coinId);
+
+    }
+    saveFavorites(favorites)
+    return favorites;
+}
+
+const handleFavoriteClick  = (coinId,iconElement) =>{
+    const favorites = toggleFavorites(coinId);
+    iconElement.classList.toggle('favorite', favorites.includes(coinId));
+}
+
+document.addEventListener('click',(event)=>{
+    if(event.target.classList.contains('favorite-icon')){
+        event.stopPropagation();
+        const coinId = event.target.dataset.id;
+        handleFavoriteClick(coinId,event.target);
+    }
+
+    const row = event.target.closest('.coin-row');
+    if(row && !event.target.classList.contains('favorite-icon')){
+        const coinId = row.getAttribute('data-id');
+        window.location.href = `coin.html?id-${coinId}`;
+    }
+
+})
+
 document.addEventListener('DOMContentLoaded', initializePage);

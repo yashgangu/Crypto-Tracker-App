@@ -1,139 +1,231 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap'); */
+body {
+    font-family: 'Lato', sans-serif;
     margin: 0;
-    background-color: gray;
-    font-family: sans-serif;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scroll */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Ensure full viewport height */
+    background-color: whitesmoke !important;
+    
 }
 
-nav{
+nav {
+    background-color: #333;
     padding: 1em;
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    position: relative;
-    height: 10px;
     align-items: center;
-    box-sizing: border-box;
-    margin-top: 5px;
+    width: 100%; /* Full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    position: relative; /* Ensure relative positioning for children */
+    height: 100%;
 }
-.nav-links{
+
+.nav-link {
     color: white;
     text-decoration: none;
     margin-right: 1em;
+    background-color: #F16222;
     padding: 8px 12px;
-    border-radius: 5px;
-    background-color: orangered;
+    border-radius: 5px; /* Rounded corners */
 }
-.nav-links:hover{
-    background-color: #b93a04;
+
+.nav-link:hover {
+    background-color: #da561ae8;
 }
-.left-nav{
+
+.left-nav {
     display: flex;
     align-items: center;
 }
-.right-nav{
+
+.right-nav {
     display: flex;
     align-items: center;
 }
-.title{
-    color: orangered;
-    margin-left: auto;
+
+.title {
+    color: #F16222;
+    margin-left: auto; /* Push to the right */
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 1px;
-    transition: color 0.3s ease;
-    align-items: center;
+    font-weight: bold; /* Make the title bold */
+    font-size: 1.5rem; /* Increase the font size */
+    font-family: 'Arial', sans-serif; /* Use a clean, sans-serif font */
+    letter-spacing: 1px; /* Add some letter spacing for readability */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
 }
-.title:hover{
-    color: #b93a04;
+
+.title:hover {
+    color: #ff7643; /* Slightly lighter color on hover */
 }
-.search-container{
+
+.search-container {
     display: flex;
     align-items: center;
-    border: 2px solid #ddd;
-    border-radius: 8px; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 5px 10px;
     background-color: #f9f9f9;
-    box-shadow: 0.2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;   
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Make the container the reference point for positioning the dialog */
 }
-#search-dialog{
+
+#search-dialog {
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 10px); /* Position the dialog box below the search input */
     left: 0;
-    width: 100%;
-    display: none;
+    width: 100%; /* Make it the same width as the search container */
     background-color: white;
-    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    box-shadow: 0,0,15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    /* position:fixed; */
+    display: none; /* Initially hidden, will be shown when search results are available */
 }
-.dialog-content{
+
+
+.dialog-content {
+    /* padding: 20px; */
     position: relative;
 }
 .dialog-content h2{
-    margin-left: 4px;
+margin-left: 4px;
+
 }
-.close-btn{
-    position: relative;
-    font: 24px;
-    right: 20px;
+
+.close-btn {
+    position: absolute;
+    /* bottom: 10px; */
+    /* top: 2px; */
+    right: 20px; 
+    font-size: 24px;
     cursor: pointer;
 }
-#search-result{
+
+#search-results {
     list-style: none;
     padding: 0;
     margin: 10px 0 0;
 }
-.search-result li{
+
+#search-results li {
     display: flex;
     align-items: center;
     margin: 10px 0;
     padding: 4px 12px;
+    cursor: pointer;
 }
-.search-result li:hover{
-    background-color: #ddd;
+#search-results li:hover{
+    background-color: #dddbdb;
 }
-/* Todo Icon Image */
-main{
-    flex: 1;
+#search-results img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+#search-box{
+    border:none;
+    padding: 4px 5px;
+}
+
+main {
+    flex: 1; /* Ensure main content takes up remaining space */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    position: relative;
+    align-items: center; /* Center items horizontally */
+    position: relative; /* For shimmer positioning */
     gap: 10px;
     margin-bottom: 5px;
-    /* width: 100%; */
+    background-color: whitesmoke;
 }
-table{
+
+table {
     width: 100%;
     border-collapse: collapse;
+
     margin-top: 20px;
 }
-th,td{
+
+th,
+td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
-th{
+
+th {
     background-color: #f4f4f4;
 }
 
-/* Responsive to tablet adding media query */
-@media (max-width:768px){
-    header{
+tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.favorite-icon {
+    color: gray;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+
+/* favorite styling */
+.favorite-icon {
+    cursor: pointer;
+}
+
+.favorite-icon:hover,
+.favorite-icon.favorite {
+    color: gold;
+}
+
+
+/* pagination CSS */
+#pagination-controls{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px;
+}
+
+#pagination-controls button{
+    background-color: #f16222;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#pagination-controls button:disabled{
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+}
+
+#pagination-controls button:hover:not(:disabled){
+    background-color: #d4501e;
+}
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
         flex-direction: column;
         text-align: center;
     }
-    nav{
+
+    nav {
         margin-top: 10px;
     }
-    table{
+
+    table {
         font-size: 14px;
     }
 }

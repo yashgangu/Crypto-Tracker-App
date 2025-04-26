@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto</title>
     <link rel="stylesheet" href="./index.css">
 </head>
-
 <body>
     <nav>
         <div class="left-nav">
@@ -18,14 +16,14 @@
             <a href="./Favorite.html" class="nav-link">Liked Coins</a>
             <div class="search-container">
                 <input type="text" id="search-box" placeholder="search coin..." autocomplete="off">
-                <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
                 <div class="dialog-box" id="search-dialog">
                     <div class="dialog-content">
                         <span id="close-dialog" class="close-btn">&times;</span>
                         <h2>Search Results</h2>
-                        <ul id="search-results">
-                            <!-- TODO Search reasult will be populated here -->
-                        </ul>
+                            <ul id="search-result">
+                                <!-- TODO Search reasult will be populated here -->
+                            </ul>
                     </div>
                 </div>
 
@@ -33,12 +31,13 @@
         </div>
     </nav>
 
-    <main>
+    <h1 style="text-align: center;">Favorite Coins</h1>
+        <div class="shimmer-container" style="display: none;"></div>
 
-        <table id="crypto-table">
+        <table id="favorite-table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Position</th>
                     <th>Icon</th>
                     <th>Name</th>
                     <th>
@@ -54,26 +53,23 @@
                         <i id="sort-market-asc" class="fa-solid fa-arrow-up"></i>
                         <i id="sort-market-desc" class="fa-solid fa-arrow-down"></i>
                     </th>
-                    <th>Favorite</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- TODO Content will be inserted here by JS -->
             </tbody>
         </table>
-        <!-- pagination and simmer we need to continue in next session! -->
-        <div id="pagination-controls">
-            <button id="prev-button" disabled>
-                Prev
-            </button>
-            <button id="next-button">
-                Next
-            </button>
-        </div>
-    </main>
+
+        <p id="no-favorites" style="display: none; text-align: center;">You haven't liked any coins yet. Explore and add your Favorites!</p>
+<!-- pagination and simmer we need to continue in next session! -->
+
+
+
+
+
     <!-- CDN for fontAwesome -->
     <script src="https://kit.fontawesome.com/ddb58420dc.js" crossorigin="anonymous"></script>
-    <script src="./index.js"></script>
+    <script src="./Favorite.js"></script>
 </body>
-
 </html>
