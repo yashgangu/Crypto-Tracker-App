@@ -115,4 +115,79 @@ document.addEventListener('click',(event)=>{
 
 })
 
+// Debounce function to limit the rate of function execution
+let debounceTimeout;
+const debounce = (func, delay) => {
+    clearTimeout(debounceTimeout);
+    debounceTimeout=setTimeout(func, delay);
+}
+
+// fetch search result from Api
+const fetchSearchResult = async (query) => {
+    try {
+        const response = await fetch(`https://api.coingecko.com/api/v3/search?query=${query}`, options);
+        const data= await response.json();
+        return data.coins;
+    } catch (err) {
+        console.error("Error Fetching search result",err);
+        return []
+    }
+};
+
+// Show search result result in the dialog box
+const showSearchResult= (results)=>{
+    const searchDialog = document.querySelector('#search-dialog');
+    const resultList=document.querySelector('#search-results');
+
+    resultList.innerHTML ='';
+
+    if(results.length !==0){
+        results.slice(0,10).forEach(result=>{
+            const listItem=document.createElement('li')
+            listItem.innerHTML=`
+                <img src="${result.thumb}" alt="${result.name}" width="24" height="24" />
+                <span>${result.name}</span>
+            `;
+            listItem.dataset.id=result.id;
+            resultList.appendChild(listItem);
+    });
+}
+else{
+    resultList.innerHTML='<li>No Coin Data!</li>'
+}
+resultList.querySelectorAll('li').forEach(item =>{
+    item.addEventListener('click',(event)=>{
+            const coinId=event.currentTarget.dataset.id;
+            window.location.href = `coin.html?id=${coinId}`;
+    });
+});
+
+    searchDialog.style.display='block';
+};
+
+//close search dialog
+const closeSearchDialog=()=>{
+    document.querySelector('#search-dialog').style.display='none';
+}
+
+// Handle search Input with debounce
+
+const handleSearchInput=()=>{
+    debounce(async()=>{
+        const searchTerm=document.querySelector('#search-box').value.trim();
+        if(searchTerm){
+            const result=await fetchSearchResult(searchTerm);
+            showSearchResult(result);
+        }else{
+            closeSearchDialog();
+        }
+    },300);
+}
+
+
+
+// Attach Event Listner
 document.addEventListener('DOMContentLoaded', initializePage);
+document.querySelector('#search-box').addEventListener('input',handleSearchInput);
+document.querySelector('#search-icon').addEventListener('click',handleSearchInput);
+document.querySelector('#close-dialog').addEventListener('click',closeSearchDialog);
