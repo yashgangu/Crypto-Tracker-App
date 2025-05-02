@@ -12,6 +12,7 @@ const options = {
 // State the variables
 let coins=[];
 let currentPage=1;
+const itemsPerPage=25;
 const fetchCoins = async (page = 1) => {
     try {
         const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=25&page=${page}`, options);
@@ -113,7 +114,38 @@ document.addEventListener('click',(event)=>{
         window.location.href = `coin.html?id-${coinId}`;
     }
 
-})
+})  
+// pagination function
+const updatePaginationControls=()=>{
+    document.querySelector('#prev-button').disabled = currentPage === 1;
+    document.querySelector('#next-button').disabled = coins.length<itemsPerPage;
+}
+
+//prev button pagination logic
+const handlePrevButtonClick=async()=>{
+    if(currentPage > 1){
+        currentPage--;
+        coins = await fetchCoins(currentPage);
+        renderCoins(coins, currentPage, itemsPerPage);
+        updatePaginationControls();
+    }
+}
+
+//next button pagination logic
+
+const handleNextButtonClick=async()=>{
+    currentPage++;
+    coins = await fetchCoins(currentPage);
+    renderCoins(coins, currentPage, itemsPerPage);
+    updatePaginationControls();
+}
+
+// event listener for pagination buttons
+if(document.querySelector('#prev-button') && document.querySelector('#next-button')){
+document.querySelector('#prev-button').addEventListener('click',handlePrevButtonClick);
+document.querySelector('#next-button').addEventListener('click',handleNextButtonClick);
+}
+
 
 // Debounce function to limit the rate of function execution
 let debounceTimeout;
