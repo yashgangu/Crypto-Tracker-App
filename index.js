@@ -223,3 +223,37 @@ document.addEventListener('DOMContentLoaded', initializePage);
 document.querySelector('#search-box').addEventListener('input',handleSearchInput);
 document.querySelector('#search-icon').addEventListener('click',handleSearchInput);
 document.querySelector('#close-dialog').addEventListener('click',closeSearchDialog);
+
+
+// Generic sorting function
+const sortCoins = (key, order) => {
+      coins.sort((a, b) => {
+        if (order === 'asc') {
+            return a[key] - b[key];
+        } else {
+            return b[key] - a[key];
+        }
+    });
+    renderCoins(coins, currentPage, itemsPerPage);
+};
+
+// Event listner for sorting coins
+document.getElementById('sort-price-asc').addEventListener('click', () => {
+    sortCoins('current_price', 'asc');
+});
+document.getElementById('sort-price-desc').addEventListener('click', () => {
+    sortCoins('current_price', 'desc');
+}   );
+document.getElementById('sort-market-asc').addEventListener('click', () => {
+    sortCoins('market_cap', 'asc');
+});
+document.getElementById('sort-market-desc').addEventListener('click', () => {
+    sortCoins('market_cap', 'desc');
+});
+document.getElementById('sort-volume-asc').addEventListener('click', () => {
+    sortCoins('total_volume', 'asc');
+}); 
+document.getElementById('sort-volume-desc').addEventListener('click', () => {
+    sortCoins('total_volume', 'desc');
+});
+
